@@ -1,0 +1,4 @@
+
+ ===== Load doc_dict. Execute time was:
+Minutes: 0.01
+Seconds: 0.31

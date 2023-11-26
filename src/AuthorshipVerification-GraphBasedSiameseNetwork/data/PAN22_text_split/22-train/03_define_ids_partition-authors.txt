@@ -1,0 +1,23 @@
+part:   len: 14 truth:  14
+part:   len: 9 truth:  9
+part:   len: 7 truth:  7
+part:   len: 6 truth:  6
+part:   len: 5 truth:  5
+part:   len: 4 truth:  4
+part:   len: 4 truth:  4
+part:   len: 84 truth:  77
+part:   len: 58 truth:  56
+part:   len: 30 truth:  29
+part:   len: 33 truth:  32
+part:   len: 30 truth:  29
+part:   len: 20 truth:  18
+part:   len: 16 truth:  15
+Total partitions:  14
+
+ ===== Process. Execute time was:
+Minutes: 0.00
+Seconds: 0.08
+
+ ===== Save. Execute time was:
+Minutes: 0.00
+Seconds: 0.00

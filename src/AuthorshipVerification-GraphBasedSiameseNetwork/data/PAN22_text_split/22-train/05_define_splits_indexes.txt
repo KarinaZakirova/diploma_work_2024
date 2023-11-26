@@ -1,0 +1,14 @@
+0 Add:       12 18 20
+1 Add:       13 15 16
+2 Add:       0 14 14
+3 Add:       1 9 9
+4 Add:       2 7 7
+[(20, 18), (16, 15), (14, 14), (9, 9), (7, 7), (254, 242)]
+
+ ===== Process. Execute time was:
+Minutes: 0.00
+Seconds: 0.01
+
+ ===== Save. Execute time was:
+Minutes: 0.00
+Seconds: 0.00

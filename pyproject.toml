@@ -1,0 +1,25 @@
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "KarinaZakirova", email = "karinazakirova@users.noreply.github.com"},
+]
+dependencies = [
+    "notebook>=7.0.5",
+    "spacy>=3.7.1",
+    "pip>=23.2.1",
+    "gensim>=4.3.2",
+    "scikit-learn>=1.3.1",
+    "networkx>=3.1",
+    "matplotlib>=3.8.0",
+    "pandas>=2.1.0",
+    "ipywidgets>=8.1.1",
+    "pymystem3>=0.2.0",
+    "seleniumbase>=4.20.9",
+    "jsonlines>=4.0.0",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "MIT"}
+

@@ -1,0 +1,159 @@
+ds_op:  {'exp_label': 'short'}
+experiment repetition:  0  of  1
+data_type_list:  ['short']
+
+Sparse mode: False
+device cuda:0
+tensor type torch.FloatTensor
+Epochs: 20
+Batch size: 256
+Starting with exp_op:
+('model_args', {'raw_components_list': [{'class': <class 'siamese_graph.GBFeatures'>, 'args': {'conv_layers_num': 2, 'conv_type': <class 'torch_geometric.nn.conv.le_conv.LEConv'>, 'h_ch': 64, 'out_ch': 64, 'pool_type': <class 'siamese_graph.GlobalAttentionSelect'>, 'pool_att_ch': 32, 'pool_att_layers': 2, 'pool_ref': 'last'}}], 'final_out_join': 'abs', 'final_out_layers_num': 2, 'final_out_ch': 64})
+
+
+loss_fn: <function soft_f1_loss at 0x000001F1D6CA2040>
+loss_fn_aux_dict:
+('BCE', BCEWithLogitsLoss())
+('double_soft_f1_loss', <function double_soft_f1_loss at 0x000001F1D6CA20D0>)
+('bound_f1_loss', <function bound_f1_loss at 0x000001F1D6CA21F0>)
+
+
+
+===== Model:
+
+ SiameseNetwork(
+  (components): ModuleList(
+    (0): GBFeatures(
+      (conv_layers): ModuleList(
+        (0): GCLayer(
+          (conv): LEConv(38, 64)
+          (norm): BatchNorm(64)
+        )
+        (1): GCLayer(
+          (conv): LEConv(64, 64)
+          (norm): BatchNorm(64)
+        )
+      )
+      (pool): GlobalAttentionSelect(gate_nn=Sequential(
+        (0): Linear(in_features=64, out_features=32, bias=True)
+        (1): ReLU()
+        (2): Linear(in_features=32, out_features=1, bias=True)
+        (3): ReLU()
+      ), nn=None)
+    )
+  )
+  (final_out): Sequential(
+    (0): Linear(in_features=64, out_features=64, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=64, out_features=1, bias=True)
+  )
+)
+
+===== Optimizer:
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0
+)
+
+ ===== Train model. Execute time was:
+Minutes: 5.18
+Seconds: 310.72
+
+ ===== Test last_model. Execute time was:
+Minutes: 0.12
+Seconds: 7.31
+
+ ===== Test best_model. Execute time was:
+Minutes: 0.12
+Seconds: 7.33
+
+ ===== Test best_model_sa. Execute time was:
+Minutes: 0.12
+Seconds: 7.28
+
+Saving raw metrics in: C:/Users/1/Desktop/karina_diploma/AuthorshipVerification-GraphBasedSiameseNetwork/test/test_output_siamese/test_command_line/22-train_11251946\short_0-0\GBSN11251946_short_0-0_metrics
+
+ ===== best_model:
+Epoch: 19
+                          val      test
+-------------------  --------  --------
+main loss            0.53622   0.446956
+average              0.515127  0.622094
+roc_auc              0.416667  0.494949
+f1_score             0.571429  0.709677
+c_at_1               0.4       0.55
+f_05                 0.454545  0.604396
+brier                0.732994  0.751448
+BCE                  0.727454  0.690274
+double_soft_f1_loss  0.514144  0.500672
+bound_f1_loss        0.714933  0.606766
+
+ ===== best_model_sa:
+Epoch: 18
+                          val      test
+-------------------  --------  --------
+main loss            0.540845  0.453193
+average              0.518102  0.626287
+roc_auc              0.427083  0.515152
+f1_score             0.571429  0.709677
+c_at_1               0.4       0.55
+f_05                 0.454545  0.604396
+brier                0.737452  0.752212
+BCE                  0.718357  0.688722
+double_soft_f1_loss  0.512016  0.500122
+bound_f1_loss        0.719308  0.612577
+
+ ===== last_model:
+Epoch: 19
+                          val      test
+-------------------  --------  --------
+main loss            0.53622   0.446956
+average              0.515127  0.622094
+roc_auc              0.416667  0.494949
+f1_score             0.571429  0.709677
+c_at_1               0.4       0.55
+f_05                 0.454545  0.604396
+brier                0.732994  0.751448
+BCE                  0.727454  0.690274
+double_soft_f1_loss  0.514144  0.500672
+bound_f1_loss        0.714933  0.606766
+
+===== Early stop model:
+Epoch: NA
+
+===== Max average in val: 0.518102 epoch 18
+
+===== Optimize threshold for best_model:
+Test: Original
+0.6220941974303205
+Val: Best th posible
+('0.50', '0.00')
+0.5151269129000717
+Test: Optimized
+0.6220941974303205
+Test: Best th posible
+('0.50', '0.00')
+0.6220941974303205
+
+===== Optimize threshold for best_model_sa:
+Test: Original
+0.6262874004028588
+Val: Best th posible
+('0.50', '0.00')
+0.5181018224300237
+Test: Optimized
+0.6262874004028588
+Test: Best th posible
+('0.50', '0.00')
+0.6262874004028588
+
+==========
+Max gpu_usage: 761
+
+ ===== Total time for GBSN11251946_short_0-0. Execute time was:
+Minutes: 24.85
+Seconds: 1490.84

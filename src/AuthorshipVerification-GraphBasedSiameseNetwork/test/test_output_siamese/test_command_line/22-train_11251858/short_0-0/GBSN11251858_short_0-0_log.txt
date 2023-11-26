@@ -1,0 +1,132 @@
+ds_op:  {'exp_label': 'short'}
+experiment repetition:  0  of  1
+data_type_list:  ['short']
+
+Sparse mode: False
+device cuda:0
+tensor type torch.FloatTensor
+Epochs: 10
+Batch size: 256
+Starting with exp_op:
+('model_args', {'raw_components_list': [{'class': <class 'siamese_graph.GBFeatures'>, 'args': {'conv_layers_num': 2, 'conv_type': <class 'torch_geometric.nn.conv.le_conv.LEConv'>, 'h_ch': 64, 'out_ch': 64, 'pool_type': <class 'siamese_graph.GlobalAttentionSelect'>, 'pool_att_ch': 32, 'pool_att_layers': 2, 'pool_ref': 'last'}}], 'final_out_join': 'abs', 'final_out_layers_num': 2, 'final_out_ch': 64})
+
+
+loss_fn: <function soft_f1_loss at 0x0000018411BCAD30>
+loss_fn_aux_dict:
+('BCE', BCEWithLogitsLoss())
+('double_soft_f1_loss', <function double_soft_f1_loss at 0x0000018411BCADC0>)
+('bound_f1_loss', <function bound_f1_loss at 0x0000018411BCAEE0>)
+
+
+
+===== Model:
+
+ SiameseNetwork(
+  (components): ModuleList(
+    (0): GBFeatures(
+      (conv_layers): ModuleList(
+        (0): GCLayer(
+          (conv): LEConv(38, 64)
+          (norm): BatchNorm(64)
+        )
+        (1): GCLayer(
+          (conv): LEConv(64, 64)
+          (norm): BatchNorm(64)
+        )
+      )
+      (pool): GlobalAttentionSelect(gate_nn=Sequential(
+        (0): Linear(in_features=64, out_features=32, bias=True)
+        (1): ReLU()
+        (2): Linear(in_features=32, out_features=1, bias=True)
+        (3): ReLU()
+      ), nn=None)
+    )
+  )
+  (final_out): Sequential(
+    (0): Linear(in_features=64, out_features=64, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=64, out_features=1, bias=True)
+  )
+)
+
+===== Optimizer:
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0
+)
+
+ ===== Train model. Execute time was:
+Minutes: 2.59
+Seconds: 155.24
+
+ ===== Test last_model. Execute time was:
+Minutes: 0.13
+Seconds: 7.74
+
+ ===== Test best_model. Execute time was:
+Minutes: 0.13
+Seconds: 7.62
+
+Saving raw metrics in: C:/Users/1/Desktop/karina_diploma/AuthorshipVerification-GraphBasedSiameseNetwork/test/test_output_siamese/test_command_line/22-train_11251858\short_0-0\GBSN11251858_short_0-0_metrics
+
+ ===== best_model:
+Epoch: 9
+                          val      test
+-------------------  --------  --------
+main loss            0.556039  0.476279
+average              0.358532  0.604793
+roc_auc              0.34375   0.616162
+f1_score             0.142857  0.526316
+c_at_1               0.4       0.55
+f_05                 0.15625   0.581395
+brier                0.749804  0.750092
+BCE                  0.69354   0.692963
+double_soft_f1_loss  0.505291  0.50114
+bound_f1_loss        0.733675  0.633436
+
+ ===== best_model_sa no found
+
+ ===== last_model:
+Epoch: 9
+                          val      test
+-------------------  --------  --------
+main loss            0.556039  0.476279
+average              0.358532  0.604793
+roc_auc              0.34375   0.616162
+f1_score             0.142857  0.526316
+c_at_1               0.4       0.55
+f_05                 0.15625   0.581395
+brier                0.749804  0.750092
+BCE                  0.69354   0.692963
+double_soft_f1_loss  0.505291  0.50114
+bound_f1_loss        0.733675  0.633436
+
+===== Early stop model:
+Epoch: NA
+
+===== Max average in val: 0.478665 epoch 8
+
+===== Optimize threshold for best_model:
+Test: Original
+0.6047929488823871
+Val: Best th posible
+('0.45', '0.00')
+0.5016849365100964
+Test: Optimized
+0.6465659957514582
+Test: Best th posible
+('0.45', '0.00')
+0.6465659957514582
+
+===== Optimize threshold: no found best_model_sa:
+
+==========
+Max gpu_usage: 755
+
+ ===== Total time for GBSN11251858_short_0-0. Execute time was:
+Minutes: 19.32
+Seconds: 1159.14

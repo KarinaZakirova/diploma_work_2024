@@ -1,0 +1,33 @@
+
+----- Problems in split and positive examples:
+Train:
+284 . Truth  272
+Val:
+16 . Truth  15
+Test:
+20 . Truth  18
+
+----- Intersections:
+train and val
+Texts:  0
+set()
+authors: 0
+set()
+topics: 2
+{'email', 'text_message'}
+
+train and test
+Texts:  0
+set()
+authors: 0
+set()
+topics: 2
+{'email', 'text_message'}
+
+test and val
+Texts:  0
+set()
+authors: 0
+set()
+topics: 2
+{'email', 'text_message'}

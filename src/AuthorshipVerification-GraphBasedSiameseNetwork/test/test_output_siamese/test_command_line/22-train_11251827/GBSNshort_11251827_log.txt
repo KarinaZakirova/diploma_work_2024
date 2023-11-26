@@ -1,0 +1,11 @@
+
+ ===== Load doc_dict. Execute time was:
+Minutes: 0.00
+Seconds: 0.18
+Number of training graphs: 1
+Number of val graphs: 1
+Number of test graphs: 1
+
+ ===== Load all. Execute time was:
+Minutes: 0.00
+Seconds: 0.18
