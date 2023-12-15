@@ -6,6 +6,8 @@ import jsonlines
 TEXTS = "pan22-authorship-verification-training.jsonl"
 AUTHORS = "pan22-authorship-verification-training-truth.jsonl"
 
+PAIRS_REQUIRED = 100
+
 
 def randhex(length):
     return "".join(random.choice("0123456789abcdef") for _ in range(length))
@@ -29,38 +31,50 @@ def list_all_authors():
 
 
 def main():
-    fanfic_files = list(Path("merged_fanfics", encoding="utf-8").glob("*.txt"))
+    fanfic_files = list(Path("fanfics", encoding="utf-8").glob("*.txt"))
     random.shuffle(fanfic_files)
-    for filename in fanfic_files:
 
-        author, fanfic = filename.stem.split("_")
+    trues = 0
+    falses = 0
 
-        with open(filename, encoding="utf-8") as f:
-            text = f.read().replace("\n", "<nl>")
+    while trues <= PAIRS_REQUIRED or falses <= PAIRS_REQUIRED:
+        filename_1 = random.choice(fanfic_files)
+        filename_2 = random.choice(fanfic_files)
+
+        author_1 = filename_1.stem.split("_")[0]
+        author_2 = filename_2.stem.split("_")[0]
+
         uuid = generate_id()
+
+        with open(filename_1, encoding="utf-8") as f:
+            text_1 = f.read().replace("\n", "<nl>")
+        with open(filename_2, encoding="utf-8") as f:
+            text_2 = f.read().replace("\n", "<nl>")
+
+        if ((author_1 == author_2 and trues > PAIRS_REQUIRED) or
+                (author_1 != author_2 and falses > PAIRS_REQUIRED)):
+            continue
+
+        trues += author_1 == author_2
+        falses += author_1 != author_2
+
+        print(trues, falses)
 
         with open(TEXTS, "a+", encoding="utf-8") as f:
             jsonlines.Writer(f).write(
                 {
                     "id": uuid,
                     "discourse_types": ["email", "text_message"],
-                    "pair": [text, text],
+                    "pair": [text_1, text_2],
                 }
             )
-        # TODO: заменить на реальный подбор настоящих авторов
-        author_placeholder = random.choice([True, False])
-        authors = []
-        if author_placeholder:
-            authors = [author, author]
-        else:
-            authors = [author, random.choice(list(list_all_authors()
-                                                  - set([author])))]
+
         with open(AUTHORS, "a+", encoding="utf-8") as f:
             jsonlines.Writer(f).write(
                 {
                     "id": uuid,
-                    "same": author_placeholder,
-                    "authors": authors,
+                    "same": author_1 == author_2,
+                    "authors": [author_1, author_2],
                 }
             )
 
